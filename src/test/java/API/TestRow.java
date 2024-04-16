@@ -42,10 +42,20 @@ public class TestRow {
     }
     @Test 
     public void testAddRow(){
-        int[] r = {1,2,3,4};
+        int[] r = {0,2,3,4};
         Row row  = new Row(r);
         int[] r2 = {0,-4,1,-3};
         Row row2  = new Row(r2);
-        assertEquals(0, row.getPivotPosition());
+        int[] r3 = {0,0,7,5};
+        Row row3  = new Row(r3);
+        assertEquals(row3.toString(), row2.addRow(row, 2).toString());
+    }
+    @Test 
+    public void testMultiplyRow(){
+        int[] r = {1,2,3,4};
+        Row row  = new Row(r);
+        int[] r3 = {3,6,9,12};
+        Row row3  = new Row(r3);
+        assertEquals(row3.toString(), row.multiplyRow(3).toString());
     }
 }

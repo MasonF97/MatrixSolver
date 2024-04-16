@@ -26,6 +26,8 @@ public class Matrix {
             }else{
                 if(r.getPivotPosition() <= pivotLocation){
                     return false;
+                }else{
+                    pivotLocation = r.getPivotPosition();
                 }
             }
         }

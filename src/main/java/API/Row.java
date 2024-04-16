@@ -16,17 +16,19 @@ public class Row {
         }
     }
 
-    public void addRow(Row other, int scalar){
+    public Row addRow(Row other, int scalar){
         for(int i = 0;i<row.size();i++){
             row.set(i, row.get(i)+(scalar*other.getAtIndex(i)));
         }
+        return this;
     }
 
 
-    public void multiplyRow(int scalar){
+    public Row multiplyRow(int scalar){
         for(int i = 0;i<row.size();i++){
             row.set(i, row.get(i)*scalar);
         }
+        return this;
     }
 
     public boolean isZeroRow(){
@@ -63,5 +65,16 @@ public class Row {
         return s + "]";
     }
     @Override 
-    public boolean 
+    public boolean equals(Object obj){
+        if (obj == null) {
+            return false;
+        }else if (obj.getClass() != this.getClass()) {
+            return false;
+        }else if(obj.toString() != this.toString()){
+            return false;
+        }else{
+            return true;
+        }
+        
+    }
 }
