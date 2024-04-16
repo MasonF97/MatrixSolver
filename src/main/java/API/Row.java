@@ -1,4 +1,4 @@
-package src.main.java;
+package src.main.java.API;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,13 @@ public class Row {
     
     public Row(ArrayList<Integer> row){
         this.row = row;
+    }
+
+    public Row(int[] row){
+        this.row = new ArrayList<>();
+        for(int i: row){
+            this.row.add(i);
+        }
     }
 
     public void addRow(Row other, int scalar){
@@ -55,4 +62,6 @@ public class Row {
         }
         return s + "]";
     }
+    @Override 
+    public boolean 
 }
