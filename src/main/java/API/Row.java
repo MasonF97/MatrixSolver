@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Row {
     private ArrayList<Integer> row;
+    // private int rhs;
     
     public Row(ArrayList<Integer> row){
         this.row = row;
@@ -20,6 +21,7 @@ public class Row {
         for(int i = 0;i<row.size();i++){
             row.set(i, row.get(i)+(scalar*other.getAtIndex(i)));
         }
+        // rhs += scalar*other.getRHS();
         return this;
     }
 
@@ -28,6 +30,7 @@ public class Row {
         for(int i = 0;i<row.size();i++){
             row.set(i, row.get(i)*scalar);
         }
+        // rhs = scalar*rhs;
         return this;
     }
 
@@ -52,7 +55,7 @@ public class Row {
     public int getPivot(){
         return row.get(this.getPivotPosition());
     }
-
+    // public int getRHS(){return this.rhs;}
     public int getAtIndex(int i){ return row.get(i);}
     public ArrayList<Integer> getRow(){return this.row;}
     public int getSize(){return this.row.size();}

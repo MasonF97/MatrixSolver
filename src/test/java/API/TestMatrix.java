@@ -25,5 +25,31 @@ public class TestMatrix {
         Matrix m = new Matrix(ints);
         assertEquals(false, m.isEchelonForm());
     }
+    @Test
+    public void testIsNotEchelonForm2(){
+        int[][] ints = {{0,2,3,4}, {0,1,2,3}, {0,0,1,2}, {0,0,0,1}};
+        Matrix m = new Matrix(ints);
+        assertEquals(false, m.isEchelonForm());
+    }
+    @Test
+    public void testIsNotEchelonForm3(){
+        int[][] ints = {{0,2,3,4}, {1,1,2,3}, {0,0,1,2}, {0,0,0,1}};
+        Matrix m = new Matrix(ints);
+        assertEquals(false, m.isEchelonForm());
+    }
+    @Test
+    public void testAlreadyReduced(){
+        int[][] ints = {{1,2,3,4}, {0,1,2,3}, {0,0,1,2}, {0,0,0,1}};
+        Matrix m = new Matrix(ints);
+        assertEquals(m.toString(), m.reduceMatrixToEchelon().toString());
+    }
+    @Test
+    public void testFixOrder(){
+        int[][] ints = {{0,2,3,4}, {1,1,2,3}, {0,0,1,2}, {0,0,0,1}};
+        Matrix m = new Matrix(ints);
+        int[][] ints2 = {{1,1,2,3}, {0,2,3,4}, {0,0,1,2}, {0,0,0,1}};
+        Matrix m2 = new Matrix(ints2);
+        assertEquals(m2.toString(), m.reduceMatrixToEchelon().toString());
+    }
 
 }

@@ -14,10 +14,34 @@ public class Matrix {
         this.rows = rows;
     }
 
-    // public Matrix solveMatrix(){
+    public Matrix reduceMatrixToEchelon(){
+        System.out.println(this.toString());
+        if(this.isEchelonForm()){
+            return this;
+        }else{
+            if(this.fixOrder()){
+                return reduceMatrixToEchelon();
+            }else{
+                return null;
+            }
+        }
+    }
 
-    // }
+    public boolean fixOrder(){         
+        for(int x = 0; x<rows.size()-1;x++){
+            if(rows.get(x).getPivotPosition() > rows.get(x+1).getPivotPosition()){
+                this.swap(x, x+1);
+                return true;
+            }
+        }
+        return false;
+    }
     
+    public void swap(int x, int y){
+        Row r1 = this.rows.get(x);
+        this.rows.set(x,this.rows.get(y));
+        this.rows.set(y, r1);
+    }
     public boolean isEchelonForm(){
         int pivotLocation = -1;
         for(Row r : rows){
@@ -43,7 +67,7 @@ public class Matrix {
         return s;
     }
 
-
+    public ArrayList<Row> getRows(){ return rows;}
     public int getRowCount(){ return rows.size();}
     public int getColCount(){return rows.get(0).getSize();}
 }
