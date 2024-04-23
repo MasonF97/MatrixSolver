@@ -6,17 +6,24 @@ public class Matrix {
     public Matrix(ArrayList<Row> rows){
         this.rows = rows;
     }
-    public Matrix(float[][] arrays, float[] rhsVector){
+    public Matrix(float[][] arrays, float[] rhsVector) throws Exception{
+        if(rhsVector.length != arrays.length){
+            throw new Exception("invalid rhs");
+        }
         ArrayList<Row> rows = new ArrayList<>();
         int i = 0;
+        int len = arrays[0].length;
         for(float[] r : arrays){
+            if(r.length != len){
+                throw new Exception("rows not same size");
+            }
             rows.add(new Row(r, rhsVector[i]));
             i++;
         }
         this.rows = rows;
     }
 
-    public Matrix(float[][] arrays){
+    public Matrix(float[][] arrays) throws Exception{
         this(arrays, new float[arrays[0].length]);
     }
 
