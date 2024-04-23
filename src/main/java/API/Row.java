@@ -3,21 +3,21 @@ package src.main.java.API;
 import java.util.ArrayList;
 
 public class Row {
-    private ArrayList<Integer> row;
-    // private int rhs;
+    private ArrayList<Float> row;
+    // private float rhs;
     
-    public Row(ArrayList<Integer> row){
+    public Row(ArrayList<Float> row){
         this.row = row;
     }
 
-    public Row(int[] row){
+    public Row(float[] row){
         this.row = new ArrayList<>();
-        for(int i: row){
+        for(float i: row){
             this.row.add(i);
         }
     }
 
-    public Row addRow(Row other, int scalar){
+    public Row addRow(Row other, float scalar){
         for(int i = 0;i<row.size();i++){
             row.set(i, row.get(i)+(scalar*other.getAtIndex(i)));
         }
@@ -26,7 +26,7 @@ public class Row {
     }
 
 
-    public Row multiplyRow(int scalar){
+    public Row multiplyRow(float scalar){
         for(int i = 0;i<row.size();i++){
             row.set(i, row.get(i)*scalar);
         }
@@ -35,7 +35,7 @@ public class Row {
     }
 
     public boolean isZeroRow(){
-        for(int x : row){
+        for(float x : row){
             if(x != 0){
                 return false;
             }
@@ -49,21 +49,21 @@ public class Row {
                 return i;
             }
         }
-        return -1;
+        return row.size();
     }
 
-    public int getPivot(){
+    public float getPivot(){
         return row.get(this.getPivotPosition());
     }
-    // public int getRHS(){return this.rhs;}
-    public int getAtIndex(int i){ return row.get(i);}
-    public ArrayList<Integer> getRow(){return this.row;}
+    // public float getRHS(){return this.rhs;}
+    public float getAtIndex(int i){ return row.get(i);}
+    public ArrayList<Float> getRow(){return this.row;}
     public int getSize(){return this.row.size();}
     @Override
     public String toString(){
         String s = "[";
-        for(int i :this.row){
-            s+= " "+i+" ";
+        for(float i :this.row){
+            s+= " "+Math.round(i * Math.pow(10, 2)) / Math.pow(10, 2)+" ";
         }
         return s + "]";
     }

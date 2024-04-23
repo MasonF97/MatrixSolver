@@ -6,9 +6,9 @@ public class Matrix {
     public Matrix(ArrayList<Row> rows){
         this.rows = rows;
     }
-    public Matrix(int[][] arrays){
+    public Matrix(float[][] arrays){
         ArrayList<Row> rows = new ArrayList<>();
-        for(int[] r : arrays){
+        for(float[] r : arrays){
             rows.add(new Row(r));
         }
         this.rows = rows;
@@ -22,10 +22,27 @@ public class Matrix {
             if(this.fixOrder()){
                 return reduceMatrixToEchelon();
             }else{
-                return null;
+                int rn = findWrongRow();
+                rows.get(rn).addRow(rows.get(rn-1), findScalar(rows.get(rn-1),rows.get(rn)));
+                return reduceMatrixToEchelon();
             }
         }
     }
+
+    public float findScalar(Row rUp, Row rDown){
+        float rUpNum = rUp.getAtIndex(rDown.getPivotPosition());
+        float rDownNum = rDown.getPivot();
+        return -rDownNum/rUpNum;
+    }
+
+    public int findWrongRow(){
+        for(int i = 0;i<rows.size();i++){
+            if(rows.get(i).getPivotPosition() == rows.get(i+1).getPivotPosition()){
+                return i+1;
+            }
+        }
+        return -1;
+    }   
 
     public boolean fixOrder(){         
         for(int x = 0; x<rows.size()-1;x++){
