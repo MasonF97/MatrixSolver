@@ -6,12 +6,18 @@ public class Matrix {
     public Matrix(ArrayList<Row> rows){
         this.rows = rows;
     }
-    public Matrix(float[][] arrays){
+    public Matrix(float[][] arrays, float[] rhsVector){
         ArrayList<Row> rows = new ArrayList<>();
+        int i = 0;
         for(float[] r : arrays){
-            rows.add(new Row(r));
+            rows.add(new Row(r, rhsVector[i]));
+            i++;
         }
         this.rows = rows;
+    }
+
+    public Matrix(float[][] arrays){
+        this(arrays, new float[arrays[0].length]);
     }
 
     public Matrix reduceMatrixToEchelon(){
@@ -87,4 +93,11 @@ public class Matrix {
     public ArrayList<Row> getRows(){ return rows;}
     public int getRowCount(){ return rows.size();}
     public int getColCount(){return rows.get(0).getSize();}
+    public ArrayList<Float> getRHSVector(){
+        ArrayList<Float> vec = new ArrayList<>();
+        for(Row row: rows){
+            vec.add(row.getRHS());
+        }
+        return vec;
+    }
 }

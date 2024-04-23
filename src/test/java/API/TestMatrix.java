@@ -11,7 +11,7 @@ public class TestMatrix {
     public void testToString(){
         float[][] floats = {{1,2,3,4}, {0,1,2,3}, {0,0,1,2}, {0,0,0,1}};
         Matrix m = new Matrix(floats);
-        assertEquals("[ 1.0  2.0  3.0  4.0 ]\n[ 0.0  1.0  2.0  3.0 ]\n[ 0.0  0.0  1.0  2.0 ]\n[ 0.0  0.0  0.0  1.0 ]\n", m.toString());
+        assertEquals("[ 1.0  2.0  3.0  4.0 | 0.0 ]\n[ 0.0  1.0  2.0  3.0 | 0.0 ]\n[ 0.0  0.0  1.0  2.0 | 0.0 ]\n[ 0.0  0.0  0.0  1.0 | 0.0 ]\n", m.toString());
     }
     @Test
     public void testIsEchelonForm(){
