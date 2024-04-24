@@ -142,6 +142,16 @@ public class TestMatrix {
         m.reduceMatrixToEchelon();
         assertEquals(m2.toString(), m.toRREF().toString());
     }
+    @Test
+    public void testReduceToRREF() throws Exception{
+        float[] fs = {9,3,6};
+        float[][] floats = {{11,8,0}, {57,9,3}, {14,0,8}};
+        Matrix m = new Matrix(floats, fs);
+        float[][] floats2 = {{1,0,0}, {0,1,0}, {0,0,1}};
+        float[] fs2 = {(float)-0.2380952,(float)1.4523809,(float)1.1666666};
+        Matrix m2 = new Matrix(floats2, fs2);
+        assertEquals(m2.toString(), m.reduceMatrixToEchelon().toRREF().toString());
+    }
     
 
 
