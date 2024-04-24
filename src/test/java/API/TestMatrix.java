@@ -131,6 +131,17 @@ public class TestMatrix {
         Throwable exception = assertThrows(Exception.class, () -> new Matrix(floats, fs));
         assertEquals("rows not same size", exception.getMessage());
     }
+    @Test
+    public void testRREF() throws Exception{
+        float[] fs = {5,2,7,3};
+        float[][] floats = {{0,0,3,4}, {1,2,1,3}, {1,5,2,8}, {0,3,3,1}};
+        Matrix m = new Matrix(floats, fs);
+        float[][] floats2 = {{1,0,0,0}, {0,1,0,0}, {0,0,1,0}, {0,0,0,1}};
+        float[] fs2 = {(float)-1.2666668,(float)0.1333332,(float)0.6,(float)0.8};
+        Matrix m2 = new Matrix(floats2, fs2);
+        m.reduceMatrixToEchelon();
+        assertEquals(m2.toString(), m.toRREF().toString());
+    }
     
 
 

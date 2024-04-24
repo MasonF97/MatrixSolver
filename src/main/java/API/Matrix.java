@@ -42,6 +42,26 @@ public class Matrix {
         }
     }
 
+    public Matrix toRREF(){
+        if(!isEchelonForm()){
+            this.reduceMatrixToEchelon();
+        }
+        for(Row row: rows){
+            if(row.getPivot() != 1 && row.getPivot() != 0){
+                row.multiplyRow(1/row.getPivot());
+                System.out.println(this.toString());
+            }
+        }
+        for(Row row: rows){
+            while(row.findRREFInt() != -1){
+                System.out.println(this.toString());
+                row.addRow(rows.get(row.findRREFInt()), -row.getRow().get(row.findRREFInt()));
+            }
+            
+        }
+        return this;
+    }
+
     public float findScalar(Row rUp, Row rDown){
         float rUpNum = rUp.getAtIndex(rDown.getPivotPosition());
         float rDownNum = rDown.getPivot();
@@ -71,6 +91,7 @@ public class Matrix {
         Row r1 = this.rows.get(x);
         this.rows.set(x,this.rows.get(y));
         this.rows.set(y, r1);
+        System.out.println("Swap: R"+x+" R"+y);
     }
     public boolean isEchelonForm(){
         int pivotLocation = -1;

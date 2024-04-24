@@ -26,18 +26,34 @@ public class Row {
     }
 
     public Row addRow(Row other, float scalar){
+        System.out.println(this.toString() +"+ ("+scalar+")"+other.toString());
         for(int i = 0;i<row.size();i++){
             row.set(i, row.get(i)+(scalar*other.getAtIndex(i)));
         }
         rhs += scalar*other.getRHS();
         return this;
     }
+    //returns wrong int if not
+    public int findRREFInt(){
+        int x;
+        if(this.getPivotPosition() == this.getSize()-1){
+            return -1;
+        }
+        for(x = this.getPivotPosition()+1;x<this.getSize();x++){
+            if(this.row.get(x)!= 0){
+                return x;
+            }
+        }
+        return -1;
+    }
 
 
     public Row multiplyRow(float scalar){
+        System.out.println("("+scalar+") *" + this.toString() );
         for(int i = 0;i<row.size();i++){
             row.set(i, row.get(i)*scalar);
         }
+        
         rhs = scalar*rhs;
         return this;
     }
