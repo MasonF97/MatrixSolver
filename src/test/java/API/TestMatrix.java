@@ -153,6 +153,7 @@ public class TestMatrix {
         assertEquals(m2.toString(), m.reduceMatrixToEchelon().toRREF().toString());
     }
     
+    
 
 
 }

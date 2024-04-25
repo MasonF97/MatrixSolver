@@ -3,6 +3,11 @@ import java.util.ArrayList;
 
 public class Matrix {
     private ArrayList<Row> rows;
+    private boolean steps = true;
+
+    public void setSteps(boolean steps){
+        this.steps = steps;
+    }
     public Matrix(ArrayList<Row> rows){
         this.rows = rows;
     }
@@ -28,7 +33,6 @@ public class Matrix {
     }
 
     public Matrix reduceMatrixToEchelon(){
-        System.out.println(this.toString());
         if(this.isEchelonForm()){
             return this;
         }else{
@@ -37,6 +41,9 @@ public class Matrix {
             }else{
                 int rn = findWrongRow();
                 rows.get(rn).addRow(rows.get(rn-1), findScalar(rows.get(rn-1),rows.get(rn)));
+                if(steps){
+                    System.out.println(this.toString());
+                }
                 return reduceMatrixToEchelon();
             }
         }
@@ -49,13 +56,17 @@ public class Matrix {
         for(Row row: rows){
             if(row.getPivot() != 1 && row.getPivot() != 0){
                 row.multiplyRow(1/row.getPivot());
-                System.out.println(this.toString());
+                if(steps){
+                    System.out.println(this.toString());
+                }
             }
         }
         for(Row row: rows){
             while(row.findRREFInt() != -1){
-                System.out.println(this.toString());
                 row.addRow(rows.get(row.findRREFInt()), -row.getRow().get(row.findRREFInt()));
+                if(steps){
+                    System.out.println(this.toString());
+                }
             }
             
         }
@@ -81,6 +92,9 @@ public class Matrix {
         for(int x = 0; x<rows.size()-1;x++){
             if(rows.get(x).getPivotPosition() > rows.get(x+1).getPivotPosition()){
                 this.swap(x, x+1);
+                if(steps){
+                    System.out.println(this.toString());
+                }
                 return true;
             }
         }
